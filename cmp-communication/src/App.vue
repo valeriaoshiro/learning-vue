@@ -3,9 +3,16 @@
     <header>
       <h1>My Friends</h1>
     </header>
+    <new-friend @add-friend="addFriend"></new-friend>
     <ul>
-      <friend-contact></friend-contact>
-      <friend-contact></friend-contact>
+      <friend-contact
+        v-for="friend in friends"
+        :key="friend.id"
+        :id="friend.id"
+        :name="friend.name"
+        :phone="friend.phone"
+        :email="friend.email"
+      ></friend-contact>
     </ul>
   </section>
 </template>
@@ -29,6 +36,17 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    addFriend(name, phone, email) {
+      let newCreatedFriend = {
+        id: new Date().toString,
+        name,
+        phone,
+        email,
+      };
+      this.friends.push(newCreatedFriend);
+    },
   },
 };
 </script>
