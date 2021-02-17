@@ -12,6 +12,7 @@
         :name="friend.name"
         :phone="friend.phone"
         :email="friend.email"
+        @delete-contact="deleteContact"
       ></friend-contact>
     </ul>
   </section>
@@ -40,12 +41,15 @@ export default {
   methods: {
     addFriend(name, phone, email) {
       let newCreatedFriend = {
-        id: new Date().toString,
+        id: new Date().toString(),
         name,
         phone,
         email,
       };
       this.friends.push(newCreatedFriend);
+    },
+    deleteContact(id) {
+      this.friends = this.friends.filter((friend) => friend.id !== id);
     },
   },
 };
